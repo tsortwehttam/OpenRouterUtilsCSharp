@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRouterUtils", "src\OpenRouterUtils\OpenRouterUtils.csproj", "{8F0A6D45-ED24-49F4-88F2-7945B88B5A9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRouterUtils.Tests", "tests\OpenRouterUtils.Tests\OpenRouterUtils.Tests.csproj", "{7DE09649-5455-4285-9F07-EC75931E1700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRouterUtils.AotSmoke", "tests\OpenRouterUtils.AotSmoke\OpenRouterUtils.AotSmoke.csproj", "{BD945111-3A85-4AC5-8A4E-3262C95D4263}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F0A6D45-ED24-49F4-88F2-7945B88B5A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F0A6D45-ED24-49F4-88F2-7945B88B5A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F0A6D45-ED24-49F4-88F2-7945B88B5A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F0A6D45-ED24-49F4-88F2-7945B88B5A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE09649-5455-4285-9F07-EC75931E1700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE09649-5455-4285-9F07-EC75931E1700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE09649-5455-4285-9F07-EC75931E1700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE09649-5455-4285-9F07-EC75931E1700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD945111-3A85-4AC5-8A4E-3262C95D4263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD945111-3A85-4AC5-8A4E-3262C95D4263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD945111-3A85-4AC5-8A4E-3262C95D4263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD945111-3A85-4AC5-8A4E-3262C95D4263}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
