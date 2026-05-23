@@ -103,3 +103,44 @@ var client = new OpenRouterClient(new OpenRouterClientOptions("sk-or-v1-...")
     DisposeTransport = true
 });
 ```
+
+## Browser / Blazor WebAssembly
+
+OpenRouterUtils runs in Blazor WebAssembly without any extra package. The `net8.0`
+build is `IsAotCompatible` and works under the browser's WASM runtime; no
+filesystem, sockets, threads, or reflection-based JSON are used.
+
+Reuse the DI-registered `HttpClient` (which routes through the browser `fetch`
+API) by passing it into the existing transport:
+
+```csharp
+// Program.cs (Blazor WebAssembly)
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+builder.Services.AddScoped(sp =>
+{
+    var http = sp.GetRequiredService<HttpClient>();
+    var transport = new HttpClientOpenRouterTransport(http, disposeClient: false);
+    return new OpenRouterClient(new OpenRouterClientOptions("sk-or-v1-...")
+    {
+        Transport = transport,
+        DisposeTransport = false
+    });
+});
+```
+
+### Browser caveats (read before shipping)
+
+- **API keys leak.** Any key bundled into a WASM app is visible to users. Run a
+  server-side proxy in production and point `HttpClient.BaseAddress` at it
+  instead of calling `openrouter.ai` directly.
+- **CORS.** Direct browser calls to `openrouter.ai` require the origin to be
+  allowed by OpenRouter. A proxy sidesteps this.
+- **No sync I/O.** All APIs here are already async, so this is fine — but do
+  not call `.Result` / `.Wait()` on the main browser thread.
+- **Restricted headers.** The browser blocks some headers (e.g. `User-Agent`,
+  `Referer`). If you customize headers, expect them to be ignored.
+
+These caveats do not apply to non-browser targets (Unity, iOS, consoles,
+macOS/Windows/Linux desktop, server) which keep using `HttpClient` or a custom
+`IOpenRouterTransport` exactly as before.
